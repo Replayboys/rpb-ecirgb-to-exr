@@ -1,6 +1,6 @@
-# ECI RGB to ACEScg Converter
+# ECI RGB to Linear sRGB Converter
 
-This tool converts ECI RGB TIFF files to ACEScg color space using OpenImageIO (OIIO). The conversion is performed using a direct matrix transformation without requiring an external OCIO configuration.
+This tool converts ECI RGB TIFF files to linear sRGB color space using OpenImageIO (OIIO). The conversion is performed using a direct matrix transformation without requiring an external OCIO configuration.
 
 ## Requirements
 
@@ -20,23 +20,23 @@ pip install -r requirements.txt
 
 Basic conversion:
 ```bash
-python eci_to_acescg.py <input_directory>
+python eci_to_linsrgb.py <input_directory>
 ```
 
 Watch folder mode (processes existing files and watches for new ones):
 ```bash
-python eci_to_acescg.py <input_directory> --watch
+python eci_to_linsrgb.py <input_directory> --watch
 ```
 
 Additional options:
 ```bash
-python eci_to_acescg.py <input_directory> --overwrite  # Overwrite existing EXR files
-python eci_to_acescg.py <input_directory> --watch --overwrite  # Watch folder and overwrite existing files
+python eci_to_linsrgb.py <input_directory> --overwrite  # Overwrite existing EXR files
+python eci_to_linsrgb.py <input_directory> --watch --overwrite  # Watch folder and overwrite existing files
 ```
 
 Example:
 ```bash
-python eci_to_acescg.py ./input_folder --watch
+python eci_to_linsrgb.py ./input_folder --watch
 ```
 
 ## Notes
@@ -51,6 +51,10 @@ python eci_to_acescg.py ./input_folder --watch
 
 The conversion is performed using a two-step matrix transformation:
 1. ECI RGB to XYZ
-2. XYZ to ACEScg
+2. XYZ to linear sRGB
 
-The matrices are combined into a single transformation for efficiency. The output preserves the full dynamic range and out-of-gamut colors in the EXR format. 
+The matrices are combined into a single transformation for efficiency. The output preserves the full dynamic range and out-of-gamut colors in the EXR format.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
